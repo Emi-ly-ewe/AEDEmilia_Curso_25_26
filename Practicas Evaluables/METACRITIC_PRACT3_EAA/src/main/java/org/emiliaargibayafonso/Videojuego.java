@@ -1,5 +1,6 @@
 package org.emiliaargibayafonso;
 
+/// Objeto creado a partir de los datos. En este se recoge la información en un objeto por cada registro.
 public class Videojuego {
     private String nombre;
     private int ranking;

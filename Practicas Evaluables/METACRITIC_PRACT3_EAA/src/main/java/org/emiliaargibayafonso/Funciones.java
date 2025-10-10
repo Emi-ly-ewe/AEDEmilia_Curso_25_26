@@ -1,29 +1,43 @@
 package org.emiliaargibayafonso;
 
-/// Esta clase cuenta con las funciones principales de la actividad.
+import java.util.*;
+import static org.emiliaargibayafonso.Utilidades.*;
 
+/// Clase que guarda las funciones principales de la actividad.
 public class Funciones {
-    public void leerFicheroMetacritic () {
 
+    public static void leerFicheroMetacritic () {
+        ArrayList<Videojuego> contenidoFichero = new ArrayList<Videojuego>();
+        leerFicheroXML();
+
+
+
+
+        System.out.println("Fichero leido con éxito.");
     }
 
-    public void modificarFechaLanzamiento () {
+    public static boolean modificarFechaLanzamiento () {
 
+        return false;
     }
 
-    public void sacarMejoresMayorNota (int notaUsuario) {
+    public static boolean sacarMejoresNota (int notaUsuario) {
 
+        return false;
     }
 
-    public void filtrarEntreAnyos (int anyoInicio, int anyoFinal) {
+    public static boolean filtrarEntreAnyos (int anyoInicio, int anyoFinal) {
 
+        return false;
     }
 
-    public void generarTopPlataforma (int limiteUsuario, String plataformaJuego) {
+    public static boolean generarTopPlataforma (int limiteUsuario, String plataformaJuego) {
 
+        return false;
     }
 
-    public void generarFicheroPlataforma () {
+    public static boolean generarFicheroPlataforma () {
 
+        return false;
     }
 }
