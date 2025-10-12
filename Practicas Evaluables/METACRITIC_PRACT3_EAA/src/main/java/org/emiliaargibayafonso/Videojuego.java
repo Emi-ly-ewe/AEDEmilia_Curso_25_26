@@ -1,19 +1,25 @@
 package org.emiliaargibayafonso;
 
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+
 /// Objeto creado a partir de los datos. En este se recoge la información en un objeto por cada registro.
 public class Videojuego {
     private String nombre;
     private int ranking;
     private int metascore;
     private String plataforma;
-    private String fechaLanzamiento;
+    private LocalDate fechaLanzamiento;
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
 
     public Videojuego(String nom, int rank, int score, String platform, String releaseDate) {
         this.nombre = nom;
         this.ranking = rank;
         this.metascore = score;
         this.plataforma = platform;
-        this.fechaLanzamiento = releaseDate;
+        setFechaLanzamiento(releaseDate);
     }
 
     public Videojuego() {
@@ -21,7 +27,7 @@ public class Videojuego {
         this.ranking = 0;
         this.metascore = 0;
         this.plataforma = "";
-        this.fechaLanzamiento = "";
+        this.fechaLanzamiento = null;
     }
 
     public String getNombre() {return nombre;}
@@ -32,8 +38,26 @@ public class Videojuego {
     public void setMetascore(int metascore) {this.metascore = metascore;}
     public String getPlataforma() {return plataforma;}
     public void setPlataforma(String plataforma) {this.plataforma = plataforma;}
-    public String getFechaLanzamiento() {return fechaLanzamiento;}
-    public void setFechaLanzamiento(String fechaLanzamiento) {this.fechaLanzamiento = fechaLanzamiento;}
+
+    public LocalDate getFechaLanzamiento() { return fechaLanzamiento; }
+    public void setFechaLanzamiento(String fechaLanzamiento) {
+        if (fechaLanzamiento == null || fechaLanzamiento.isEmpty()) {
+            this.fechaLanzamiento = null;
+            return;
+        }
+        try {
+            this.fechaLanzamiento = LocalDate.parse(fechaLanzamiento, FORMATTER);
+        } catch (DateTimeParseException e) {
+            System.out.println("Error al parsear la fecha: " + fechaLanzamiento);
+            this.fechaLanzamiento = null;
+        }
+    }
+    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
+        this.fechaLanzamiento = fechaLanzamiento;
+    }
+    public String getFechaLanzamientoFormateada() {
+        return fechaLanzamiento != null ? fechaLanzamiento.format(FORMATTER) : "";
+    }
 
     @Override
     public String toString() {
@@ -42,7 +66,7 @@ public class Videojuego {
                 ", ranking=" + ranking +
                 ", metascore=" + metascore +
                 ", plataforma='" + plataforma + '\'' +
-                "fechaLanzamiento='" + fechaLanzamiento + '\'' +
+                "fechaLanzamiento='" + getFechaLanzamientoFormateada() + '\'' +
                 '}';
     }
 }
