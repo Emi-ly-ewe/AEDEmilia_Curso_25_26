@@ -2,7 +2,7 @@ package org.emiliaargibayafonso.DAO;
 
 public class GeneroDAO implements InterfazDAO {
     @Override
-    public void select() {
+    public void retrieveAll() {
 
     }
     @Override

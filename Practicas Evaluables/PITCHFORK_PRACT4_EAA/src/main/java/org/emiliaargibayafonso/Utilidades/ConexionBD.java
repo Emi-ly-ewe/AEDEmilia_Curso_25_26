@@ -16,7 +16,7 @@ public class ConexionBD {
         }
     }
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConexion() throws SQLException {
         if (instance == null) {
             instance = new ConexionBD();
         }

@@ -4,9 +4,9 @@ import java.sql.PreparedStatement;
 
 public class ReviewDAO implements InterfazDAO {
     @Override
-    public void select() {
+    public void retrieveAll() {
         String sqlSelect = "SELECT * FROM reviews";
-        try (PreparedStatement pdstmt) {
+        try (PreparedStatement pdstmt = conexion) {
 
         }
 
