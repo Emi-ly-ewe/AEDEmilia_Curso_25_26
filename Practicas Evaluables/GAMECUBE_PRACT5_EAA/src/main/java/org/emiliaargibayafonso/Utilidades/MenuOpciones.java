@@ -20,7 +20,7 @@ public class MenuOpciones {
         for (String option : options) {
             System.out.println(option);
         }
-        System.out.println("0. Salir del programa.");
+        System.out.println("0) Salir del programa.");
         System.out.println("----------------------");
         System.out.println("Seleccione una opción:");
     }

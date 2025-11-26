@@ -32,7 +32,7 @@ public class GestorMigracion {
             stmt.execute(queryCreateTable.toString());
             stmt.close();
         } catch (SQLException e) {
-            System.out.println("ERROR ==> "+e.getMessage());
+            System.out.println("ERROR (CrearTablas) ==> "+e.getMessage());
         }
     }
     public static void pasarDatos(Connection gamecubeConn, Connection playConn) {
@@ -41,15 +41,16 @@ public class GestorMigracion {
             ResultSet tablasGameCube = metaDatosGameCube.getTables(null, null, "%", new String[]{"TABLE"});
 
             while (tablasGameCube.next()) {
-                String nombreTabla = tablasGameCube.getString("TABLE_NAME");
+                String nomTablaGC = tablasGameCube.getString("TABLE_NAME");
+                String nomTablaPlay = "Juego_PlayStation2";
                 Statement stmt = gamecubeConn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM "+nombreTabla);
+                ResultSet rs = stmt.executeQuery("SELECT * FROM "+nomTablaGC);
                 ResultSetMetaData rsMetaData = rs.getMetaData();
                 int nColumnas = rsMetaData.getColumnCount();
 
                 //Según Gepeto lo de abajo crea tantos "?" como columnas haya en la tabla para añadir la información de cada columna.
                 //(NOTA: Digo abiertamente que lo saqué de la IA porque no tenía idea de como hacer esto de manera automatizada.)
-                StringBuilder queryInsertarDatos = new StringBuilder("INSERT INTO "+nombreTabla+" VALUES(");
+                StringBuilder queryInsertarDatos = new StringBuilder("INSERT INTO "+nomTablaPlay+" VALUES(");
                 for (int i = 0; i < nColumnas; i++) {
                     if (i > 0) queryInsertarDatos.append(", ");
                     queryInsertarDatos.append("?");
@@ -68,7 +69,7 @@ public class GestorMigracion {
                 stmt.close();
             }
         } catch (SQLException e) {
-            System.out.println("ERROR ==> "+e.getMessage());
+            System.out.println("ERROR (PasarTablas) ==> "+e.getMessage());
         }
     }
 }

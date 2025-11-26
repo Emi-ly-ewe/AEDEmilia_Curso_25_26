@@ -12,8 +12,7 @@ public class Main {
     public static final Scanner sc = new Scanner(System.in);
     private static final String[] opciones = {"1) Insertar un juego nuevo. (Rollback -> God of War)",
             "2) Modificar un juego existente. (Rollback -> Sony)",
-            "3) Sacar los juegos filtrados por companya.",
-            "0) Salir del programa."};
+            "3) Sacar los juegos filtrados por companya."};
     private static final MenuOpciones menu = new MenuOpciones(opciones);
 
     static void main() {
@@ -34,3 +33,4 @@ public class Main {
         }
     }
 }
+///NOTA: HAY QUE BORRAR EL DB DE PLAY PARA QUE SE EJECUTE ADECUADAMENTE CADA QUE SE INICIA.
